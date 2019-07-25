@@ -44,4 +44,11 @@ class Streams {
 		order.addItem(new LineItem(valveStem, 1));		
 		assertEquals(TIRE_COST + VALVE_STEM_COST, order.getCost());		
 	}
+
+	@Test
+	void basicTwoValveStemsCostCorrect() {
+		order.addItem(new LineItem(tire, 1));		
+		order.addItem(new LineItem(valveStem, 2));		
+		assertEquals(TIRE_COST + (2 * VALVE_STEM_COST), order.getCost());		
+	}
 }
