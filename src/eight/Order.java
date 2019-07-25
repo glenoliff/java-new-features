@@ -1,6 +1,7 @@
 package eight;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Order {
 
@@ -24,18 +25,15 @@ public class Order {
 	
 	public double getCost() {
 		
-		Double total = 0.0;
-		
-		for (LineItem lineItem : getItems()) {
-			total += lineItem.getCost();
+		if (getItems() == null) {
+			return 0.0;
 		}
 		
-//		//TODO: adjust using streams!
-//		final Double total[] = new Double[1];
-//
-//		getItems().forEach(i -> total[0] += i.getCost());
+		return getItems()
+					.stream()
+					.map(li -> li.getCost())
+					.reduce(0.0, Double::sum);
 		
-		return total;
 	}
 	
 	public ArrayList<LineItem> getItems() {

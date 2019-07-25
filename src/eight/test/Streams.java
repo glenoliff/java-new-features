@@ -28,6 +28,11 @@ class Streams {
 	}
 	
 	@Test
+	void noItemsZeroCost() {
+		assertEquals(0.0, order.getCost());
+	}
+	
+	@Test
 	void basicCostCorrect() {
 		order.addItem(new LineItem(tire, 1));		
 		assertEquals(TIRE_COST, order.getCost());
