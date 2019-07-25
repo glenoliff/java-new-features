@@ -2,9 +2,6 @@ package eight.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -67,5 +64,12 @@ class Streams {
 		order.addItem(new LineItem(tire, 1));		
 		order.addItem(new LineItem(valveStem, 2));		
 		assertEquals(0.0, order.getCostByType("Doesn't Match Name"));		
+	}
+	
+	@Test
+	void getListOfNames() {
+		order.addItem(new LineItem(tire, 1));		
+		order.addItem(new LineItem(valveStem, 2));		
+		assertEquals(TIRE_NAME + ", " + VALVE_STEM_NAME, order.getItemNames());				
 	}
 }

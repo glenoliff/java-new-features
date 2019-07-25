@@ -19,6 +19,10 @@ public class LineItem {
 	public int getNumItems() {
 		return numItems;
 	}
+	
+	public String getItemName() {
+		return item.getName();
+	}
 
 	public Item getItem() {
 		return item;

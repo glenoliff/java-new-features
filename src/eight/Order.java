@@ -61,4 +61,17 @@ public class Order {
 				.map(li -> li.getCost())
 				.reduce(0.0, Double::sum);
 	}
+	
+	public String getItemNames() {
+		
+		if (getItems() == null) {
+			return "";
+		}
+		
+		return getItems()
+				.stream()
+				.map(LineItem::getItemName)
+				.collect(Collectors.joining(", "))
+				.toString();
+	}
 }
