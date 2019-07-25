@@ -23,4 +23,8 @@ public class LineItem {
 	public Item getItem() {
 		return item;
 	}
+
+	public boolean nameEquals(String typeName) {
+		return item == null ? false : item.getName().equalsIgnoreCase(typeName);
+	}
 }

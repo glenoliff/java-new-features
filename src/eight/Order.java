@@ -23,6 +23,19 @@ public class Order {
 		return address;
 	}
 	
+	public ArrayList<LineItem> getItems() {
+		return items;
+	}
+	
+	public void addItem(LineItem item) {
+		
+		if (items == null) {
+			items = new ArrayList<>();
+		}
+		
+		items.add(item);
+	}
+
 	public double getCost() {
 		
 		if (getItems() == null) {
@@ -36,16 +49,16 @@ public class Order {
 		
 	}
 	
-	public ArrayList<LineItem> getItems() {
-		return items;
-	}
-	
-	public void addItem(LineItem item) {
+	public Double getCostByType(String typeName) {
 		
-		if (items == null) {
-			items = new ArrayList<>();
+		if (getItems() == null) {
+			return 0.0;
 		}
 		
-		items.add(item);
+		return getItems()
+				.stream()
+				.filter(i -> i.nameEquals(typeName))
+				.map(li -> li.getCost())
+				.reduce(0.0, Double::sum);
 	}
 }

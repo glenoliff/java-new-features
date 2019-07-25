@@ -17,10 +17,13 @@ class Streams {
 	private static final double TIRE_COST = 57.50;
 	private static final double VALVE_STEM_COST = 1.25;
 	
+	private static final String VALVE_STEM_NAME = "Valve Stem";	
+	private static final String TIRE_NAME = "Tire";	
+
 	private Order order;
 	
-	private Item tire = new Item("Tire", TIRE_COST);
-	private Item valveStem = new Item("Valve Stem", VALVE_STEM_COST);
+	private Item tire = new Item(TIRE_NAME, TIRE_COST);
+	private Item valveStem = new Item(VALVE_STEM_NAME, VALVE_STEM_COST);
 	
 	@BeforeEach
 	public void setUp() {		
@@ -50,5 +53,19 @@ class Streams {
 		order.addItem(new LineItem(tire, 1));		
 		order.addItem(new LineItem(valveStem, 2));		
 		assertEquals(TIRE_COST + (2 * VALVE_STEM_COST), order.getCost());		
+	}
+	
+	@Test
+	void getCostByType() {
+		order.addItem(new LineItem(tire, 1));		
+		order.addItem(new LineItem(valveStem, 2));		
+		assertEquals((2 * VALVE_STEM_COST), order.getCostByType(VALVE_STEM_NAME));		
+	}
+	
+	@Test
+	void getCostByTypeNoMatchingName() {
+		order.addItem(new LineItem(tire, 1));		
+		order.addItem(new LineItem(valveStem, 2));		
+		assertEquals(0.0, order.getCostByType("Doesn't Match Name"));		
 	}
 }
