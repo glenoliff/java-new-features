@@ -2,10 +2,8 @@ package nine.test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -40,7 +38,7 @@ public class StreamImprovments {
 	@Test
 	public void ofNullable() {
 		
-		HashMap<Integer, Integer> map = new HashMap();
+		HashMap<Integer, Integer> map = new HashMap<>();
 
 		map.put(1, 1);
 		map.put(2, 4);
@@ -58,6 +56,5 @@ public class StreamImprovments {
 		List<Integer> ints = IntStream.iterate(1, i -> i < 5, i -> i + 1).boxed().collect(Collectors.toList());
 		
 		assertEquals(4, ints.size());
-		
 	}
 }
